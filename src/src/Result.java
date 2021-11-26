@@ -1,3 +1,10 @@
+/**
+ * Result tuple class
+ * @author Mason Adams
+ * @version 1.0.0
+ * Pairs any object sent between server and client to a protocol
+ *
+ */
 public class Result<T> {
 
     private final T receivedObject;
