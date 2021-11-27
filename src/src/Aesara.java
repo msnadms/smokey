@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 /**
@@ -20,6 +21,24 @@ public class Aesara implements Runnable {
     }
 
     public void run() {
+
+        Protocol protocol;
+
+        try {
+            while ((protocol = (Protocol) ois.readObject()) != null) {
+                switch (protocol) {
+                    case SIGNUP:
+                        break;
+                    case LOGIN:
+                        break;
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+
 
     }
 }

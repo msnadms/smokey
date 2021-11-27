@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Objects;
 /**
@@ -35,6 +36,31 @@ public class Pythagoras {
         }
         server.stopServer();
 
+    }
+
+    public void addAccount(Account account) {
+        accounts.put(account.getId(), account);
+    }
+
+    public Account deleteAccount(Account account) {
+        return accounts.remove(account.getId());
+    }
+    public int updateAccount(Account account, String... info) {
+        //User, email, password
+        String[] ud = (String[]) Arrays.stream(info).toArray();
+        int fieldsUpdated = ud.length;
+        switch (ud.length) {
+            case 3:
+                account.changePassword(ud[2]);
+            case 2:
+                account.changeEmail(ud[1]);
+            case 1:
+                account.changeUsername(ud[0]);
+                break;
+        }
+        accounts.remove(account.getId());
+        accounts.put(account.getId(), account);
+        return fieldsUpdated;
     }
 
     public void acceptClient() {
